@@ -15,5 +15,10 @@ public interface ILenovoSmartTab {
 	
 	Page<LenovoSmartTab> listAll(int pageNum, String sortField, String sortDir);
 	
+	//form
+	void saveAllLenovoSmartTab(List<LenovoSmartTab> lenovoSmartTab);
+	
+	
+	String saveLenovoSmartTab(LenovoSmartTab lenovoSmartTab);
 
 }

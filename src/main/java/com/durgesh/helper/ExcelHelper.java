@@ -96,7 +96,7 @@ public class ExcelHelper {
 		            break;
 	          case 10:
 		        
-		        	  lenovoSmartTab.setAccessoriesGuarantee(currentCell.getStringCellValue());
+		        	  lenovoSmartTab.setAccessoryGuarantee(currentCell.getStringCellValue());
 		        	  
 		            break;
 	         

@@ -28,6 +28,8 @@ public class LenovoSmartTab {
 	private String battery;
 	private String processor;
 	private String tabletGuarantee;
-	private String accessoriesGuarantee;
+	//private String accessoriesGuarantee;
+	
+	private String accessoryGuarantee;
 
 }

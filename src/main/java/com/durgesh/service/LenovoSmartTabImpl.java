@@ -58,6 +58,21 @@ public class LenovoSmartTabImpl implements ILenovoSmartTab{
 	     
 	    return lenovoSmartTabRepository.findAll(pageable);
 	}
+
+	//form
+	@Override
+	public void saveAllLenovoSmartTab(List<LenovoSmartTab> lenovoSmartTab) {
+		 for (LenovoSmartTab lenovosmarttab : lenovoSmartTab)
+			 lenovoSmartTabRepository.save(lenovosmarttab);
+		
+	}
+
+	@Override
+	public String saveLenovoSmartTab(LenovoSmartTab lenovoSmartTab) {
+		// TODO Auto-generated method stub
+		lenovoSmartTabRepository.save(lenovoSmartTab);
+		return "record added";
+	}
 }
 
 

@@ -18,11 +18,14 @@ $(document).ready(function(){
 <body>
 
 <div align="center">
-		
+		<div align="center">
+      
+        <a href="/addProduct">Click here to add new record</a>
+    </div>
 	<h1>Product List &nbsp;&nbsp;&nbsp;&nbsp;</h1>
 	<a th:href="@{/lenovoSmartTab/export/pdf}">Export to PDF</a>
 	&nbsp;&nbsp;
-	<a th:href="@{/lenovoSmartTab/export/pdf}">Export to PDF</a>
+	<a th:href="@{/uploadForm}">Click Here For Add Data in Bulk</a>
 	
 	<h2>Search by Model</h2>
 
@@ -72,7 +75,7 @@ $(document).ready(function(){
 				<td th:text="${listLenovo.Battery}">Battery</td>
 				<td th:text="${listLenovo.Processor}">Processor</td>
 				<td th:text="${listLenovo.tabletGuarantee}" align="center">TabletGuarantee</td>
-				<td th:text="${listLenovo.accessoriesGuarantee}" align="center">AccessoriesGuarantee</td>
+				<td th:text="${listLenovo.accessoryGuarantee}" align="center">AccessoriesGuarantee</td>
 				<!-- <td>
 					<a th:href="@{'/edit/' + ${product.id}}">Edit</a>
 					&nbsp;&nbsp;&nbsp;&nbsp;

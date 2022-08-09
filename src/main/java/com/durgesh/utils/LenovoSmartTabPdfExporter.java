@@ -85,7 +85,7 @@ public class LenovoSmartTabPdfExporter {
 	            table.addCell(lenovoList.getBattery());
 	            table.addCell(lenovoList.getProcessor());
 	            table.addCell(lenovoList.getTabletGuarantee());
-	            table.addCell(lenovoList.getAccessoriesGuarantee());
+	            table.addCell(lenovoList.getAccessoryGuarantee());
 	        }
 	    }
 	     

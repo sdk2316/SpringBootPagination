@@ -3,6 +3,9 @@ package com.durgesh.contoller;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -16,6 +19,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,12 +40,33 @@ public class LenovoSmartTabController {
 	ILenovoSmartTab iLenovoSmartTab;
 	
 	
+	 @GetMapping("/addProduct")
+	    public String showForm(Model model) {
+		 LenovoSmartTab lenovoSmartTab = new LenovoSmartTab();
+	        model.addAttribute("lenovoSmartTab", lenovoSmartTab);
+	         
+	        List<String> listProfession = Arrays.asList("Developer", "Tester", "Architect");
+	        model.addAttribute("listProfession", listProfession);
+	         
+	        return "addProduct_form";
+	    }
+	 
+	 @PostMapping("/addProduct")
+	 public String submitForm(@ModelAttribute("lenovoSmartTab") LenovoSmartTab lenovoSmartTab) {
+	     System.out.println(lenovoSmartTab);
+	     iLenovoSmartTab.saveLenovoSmartTab(lenovoSmartTab);
+	     return "add_success";
+	 }
+	
+	
 	// select count(title) from tutorials;
-			@PostMapping(value = "/upload")
+			@PostMapping("/upload")
 			public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file) {
 				String message = "";
+				System.out.println("bulk upload");
 				if (ExcelHelper.hasExcelFormat(file)) {
 					try {
+						
 						long startTime = System.currentTimeMillis();
 						iLenovoSmartTab.save(file);
 						message = " file record uploaded successfully: " + file.getOriginalFilename();
@@ -64,6 +89,13 @@ public class LenovoSmartTabController {
 			public List<LenovoSmartTab> getAllLenovoSmartTab(){
 				
 				return iLenovoSmartTab.getAllLenovoSmartTab();
+				
+			}
+			
+			@GetMapping("/uploadForm")
+			public String upload(){
+				
+				return "upload";
 				
 			}
 			
@@ -139,5 +171,38 @@ public class LenovoSmartTabController {
 		        exporter.export(response);
 		         
 		    }
+			
+			//form
+			
+			// @PostMapping annotation maps HTTP POST
+			// requests onto specific handler methods
+			@PostMapping("/uploadExcel")
+			public String uploadMultipartFile(@RequestParam("files") MultipartFile[] files, Model modal) {
+				System.out.println("bulk file.....");
+			try {
+				// Declare empty list for collect the files data
+				// which will come from UI
+				List<LenovoSmartTab> fileList = new ArrayList<LenovoSmartTab>();
+				for (MultipartFile file : files) {
+					
+					
+					// Adding file into fileList
+					fileList.addAll((Collection<? extends LenovoSmartTab>) file);
+					}
+			
+					// Saving all the list item into database
+				iLenovoSmartTab.saveAllLenovoSmartTab(fileList);
+
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			
+				// Send file list to View using modal class
+				// fileServiceImplementation.getAllFiles() used to
+				// fetch all file list from DB
+				modal.addAttribute("allFiles", iLenovoSmartTab.getAllLenovoSmartTab());
+			
+				return "index";
+			}
 
 }
