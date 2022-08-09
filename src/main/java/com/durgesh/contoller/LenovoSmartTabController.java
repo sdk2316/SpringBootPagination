@@ -1,6 +1,12 @@
 package com.durgesh.contoller;
 
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -20,6 +26,8 @@ import com.durgesh.helper.ExcelHelper;
 import com.durgesh.model.LenovoSmartTab;
 import com.durgesh.model.ResponseMessage;
 import com.durgesh.service.ILenovoSmartTab;
+import com.durgesh.utils.LenovoSmartTabPdfExporter;
+import com.lowagie.text.DocumentException;
 
 @Controller
 public class LenovoSmartTabController {
@@ -112,5 +120,24 @@ public class LenovoSmartTabController {
 			     
 			    return "index";
 			}
+			
+			// pdf 
+			
+			@GetMapping("/lenovoSmartTab/export/pdf")
+		    public void exportToPDF(HttpServletResponse response) throws DocumentException, IOException {
+		        response.setContentType("application/pdf");
+		        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+		        String currentDateTime = dateFormatter.format(new Date());
+		         
+		        String headerKey = "Content-Disposition";
+		        String headerValue = "attachment; filename=LenovoSmartTab_" + currentDateTime + ".pdf";
+		        response.setHeader(headerKey, headerValue);
+		         
+		        List<LenovoSmartTab> listLenovoSmartTab = iLenovoSmartTab.getAllLenovoSmartTab();
+		         
+		        LenovoSmartTabPdfExporter exporter = new LenovoSmartTabPdfExporter(listLenovoSmartTab);
+		        exporter.export(response);
+		         
+		    }
 
 }

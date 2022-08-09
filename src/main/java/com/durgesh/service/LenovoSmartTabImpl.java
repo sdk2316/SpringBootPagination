@@ -37,7 +37,7 @@ public class LenovoSmartTabImpl implements ILenovoSmartTab{
 	@Override
 	public List<LenovoSmartTab> getAllLenovoSmartTab() {
 		// TODO Auto-generated method stub
-		return lenovoSmartTabRepository.findAll();
+		return lenovoSmartTabRepository.findAll(Sort.by("model").ascending());
 	}
 	
 //	public Page<LenovoSmartTab> listAll(int pageNum) {
