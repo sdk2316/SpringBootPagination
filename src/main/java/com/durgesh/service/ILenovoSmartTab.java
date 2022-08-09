@@ -11,7 +11,9 @@ public interface ILenovoSmartTab {
 	
 	public void save(MultipartFile file);
 	public List<LenovoSmartTab> getAllLenovoSmartTab();
-	Page<LenovoSmartTab> listAll(int pageNum);
+	//Page<LenovoSmartTab> listAll(int pageNum);
+	
+	Page<LenovoSmartTab> listAll(int pageNum, String sortField, String sortDir);
 	
 
 }

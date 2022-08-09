@@ -2,9 +2,9 @@ package com.durgesh.contoller;
 
 import java.util.List;
 
-import org.apache.commons.math3.stat.descriptive.summary.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -60,25 +60,57 @@ public class LenovoSmartTabController {
 			}
 			
 			
+//			@GetMapping("/page/{pageNum}")
+//			public String viewPage(Model model,
+//			        @PathVariable(name = "pageNum") int pageNum) {
+//			     
+//			    Page<LenovoSmartTab> page = iLenovoSmartTab.listAll(pageNum);
+//			     
+//			    List<LenovoSmartTab> listLenovoSmartTab = page.getContent();
+//			     
+//			    model.addAttribute("currentPage", pageNum);
+//			    model.addAttribute("totalPages", page.getTotalPages());
+//			    model.addAttribute("totalItems", page.getTotalElements());
+//			    model.addAttribute("listLenovoSmartTab", listLenovoSmartTab);
+//			     
+//			    return "index";
+//			}
+			
+			
+			
+//			@GetMapping("/")
+//			public String viewHomePage(Model model) {
+//			    return viewPage(model, 1);
+//			}
+			
+			@GetMapping("/")
+			public String viewHomePage(Model model) {
+			    return viewPage(model, 1, "model", "asc");
+			}
+			
+			
 			@GetMapping("/page/{pageNum}")
 			public String viewPage(Model model,
-			        @PathVariable(name = "pageNum") int pageNum) {
+			        @PathVariable(name = "pageNum") int pageNum,
+			        @Param("sortField") String sortField,
+			        @Param("sortDir") String sortDir) {
 			     
-			    Page<LenovoSmartTab> page = iLenovoSmartTab.listAll(pageNum);
+			    Page<LenovoSmartTab> page = iLenovoSmartTab.listAll(pageNum, sortField, sortDir);
 			     
 			    List<LenovoSmartTab> listLenovoSmartTab = page.getContent();
 			     
 			    model.addAttribute("currentPage", pageNum);
 			    model.addAttribute("totalPages", page.getTotalPages());
 			    model.addAttribute("totalItems", page.getTotalElements());
+			    
+			    model.addAttribute("sortField", sortField);
+			    model.addAttribute("sortDir", sortDir);
+			    model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
+			     
+			    
 			    model.addAttribute("listLenovoSmartTab", listLenovoSmartTab);
 			     
 			    return "index";
-			}
-			
-			@GetMapping("/")
-			public String viewHomePage(Model model) {
-			    return viewPage(model, 1);
 			}
 
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -39,14 +40,24 @@ public class LenovoSmartTabImpl implements ILenovoSmartTab{
 		return lenovoSmartTabRepository.findAll();
 	}
 	
-	public Page<LenovoSmartTab> listAll(int pageNum) {
+//	public Page<LenovoSmartTab> listAll(int pageNum) {
+//	    int pageSize = 5;
+//	     
+//	    Pageable pageable = PageRequest.of(pageNum - 1, pageSize);
+//	     
+//	    return lenovoSmartTabRepository.findAll(pageable);
+//	}
+
+	
+	public Page<LenovoSmartTab> listAll(int pageNum, String sortField, String sortDir) {
 	    int pageSize = 5;
-	     
-	    Pageable pageable = PageRequest.of(pageNum - 1, pageSize);
+	    Pageable pageable = PageRequest.of(pageNum - 1, pageSize,
+	            sortDir.equals("asc") ? Sort.by(sortField).ascending()
+	            : Sort.by(sortField).descending()
+	    );
 	     
 	    return lenovoSmartTabRepository.findAll(pageable);
 	}
-
 }
 
 
