@@ -50,7 +50,7 @@ public class LenovoSmartTabImpl implements ILenovoSmartTab{
 
 	
 	public Page<LenovoSmartTab> listAll(int pageNum, String sortField, String sortDir) {
-	    int pageSize = 5;
+	    int pageSize = 15;
 	    Pageable pageable = PageRequest.of(pageNum - 1, pageSize,
 	            sortDir.equals("asc") ? Sort.by(sortField).ascending()
 	            : Sort.by(sortField).descending()

@@ -2,17 +2,34 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
-<title>Product Manager</title>
+<title>Electronics Product </title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
 </head>
 <body>
+
 <div align="center">
 		
 	<h1>Product List</h1>
 	
+	<h2>Search by Model</h2>
+
+<input id="myInput" type="text" placeholder="Search......">
+<br><br>
+	
 	
 	<br/><br/>
 	
-	<table border="1" cellpadding="10">
+	<table border="1" cellpadding="10" id="myTable">
 		<thead>
 			<tr>
 				<th>
