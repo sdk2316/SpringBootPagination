@@ -5,63 +5,102 @@
 <title>User Registration</title>
 </head>
 <style type="text/css">
-    label {
-        display: inline-block;
-        width: 200px;
-        margin: 5px;
-        text-align: left;
-    }
-    input[type=text], input[type=password], select {
-        display: inline-block;
-        width: 200px;
-    }
-    input[type=radio] {
-        margin-left: 45px;
-    }
-    input[type=checkbox] {
-        margin-right: 190px;
-    }  
-    button {
-        padding: 5px;
-        margin: 10px;
-    }
+	button {
+		padding: 10px;
+	}
+	span {
+		color: red;
+		font-style: italic;
+	}
+	form {
+		display: table;
+	}
+	form div {
+		display: table-row;
+	}
+	label, input, span {
+		display: table-cell;
+		margin: 5px;
+		text-align: left;		
+	}
+	input[type=text] {
+		width: 200px;
+		margin: 5px;
+	}
+
+	form div div {
+		display: table-cell;
+	}
 </style>
 <body>
 <div align="center">
     <h1>Add Product</h1>
     <form action="#" th:action="@{/addProduct}" method="post" th:object="${lenovoSmartTab}">
        
+      <div>
         <label>model:</label>
         <input type="text" th:field="*{model}" /><br/>
+        <span th:if="${#fields.hasErrors('model')}" th:errors="*{model}">model error</span>
+      </div>
  
+        <div>
         <label>Ram:</label>
         <input type="text" th:field="*{ram}" /><br/>
+        <span th:if="${#fields.hasErrors('ram')}" th:errors="*{ram}">ram  error</span>
+        </div>
  
+       <div>
         <label>ROM</label>
         <input type="text" th:field="*{rom}" /><br/>
+         <span th:if="${#fields.hasErrors('rom')}" th:errors="*{rom}">rom  error</span>
+       </div>
         
+        <div>
          <label>Size</label>
         <input type="number" th:field="*{size}" /><br/>
+         <span th:if="${#fields.hasErrors('size')}" th:errors="*{size}">size error</span>
+        </div>
         
+         <div>
          <label>expandableUpto</label>
         <input type="number" th:field="*{expandableUpto}" /><br/>
+         <span th:if="${#fields.hasErrors('expandableUpto')}" th:errors="*{expandableUpto}">expandableUpto  error</span>
+         </div>
         
+         <div>
          <label>PrimaryCamera</label>
         <input type="text" th:field="*{primaryCamera}" /><br/>
         
+         <span th:if="${#fields.hasErrors('primaryCamera')}" th:errors="*{primaryCamera}">primaryCamera error</span>
+         </div>
+        
+        <div>
+        
          <label>Battery</label>
         <input type="text" th:field="*{battery}" /><br/>
+         <span th:if="${#fields.hasErrors('battery')}" th:errors="*{battery}">battery  error</span>
+        </div>
+        
+        <div>
         
          <label>Processor</label>
         <input type="text" th:field="*{processor}" /><br/>
+         <span th:if="${#fields.hasErrors('processor')}" th:errors="*{processor}">processor  error</span>
+        </div>
         
         
+         <div>
          <label>TabletGuarantee</label>
         <input type="text" th:field="*{tabletGuarantee}" /><br/>
+          <span th:if="${#fields.hasErrors('tabletGuarantee')}" th:errors="*{tabletGuarantee}">tabletGuarantee  error</span>
+         </div>
  
       
+       <div>
         <label> AccessoriesGuarantee</label>
         <input type="text" th:field="*{accessoryGuarantee}" /><br/>
+         <span th:if="${#fields.hasErrors('accessoryGuarantee')}" th:errors="*{accessoryGuarantee}">accessoryGuarantee error</span>
+       </div>
  <!--  
  
   <label>Gender:</label>

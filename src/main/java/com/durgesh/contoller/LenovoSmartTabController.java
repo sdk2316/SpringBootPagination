@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,6 +19,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -52,15 +54,21 @@ public class LenovoSmartTabController {
 	    }
 	 
 	 @PostMapping("/addProduct")
-	 public String submitForm(@ModelAttribute("lenovoSmartTab") LenovoSmartTab lenovoSmartTab) {
+	 public String submitForm(@Valid @ModelAttribute("lenovoSmartTab") LenovoSmartTab lenovoSmartTab,BindingResult bindingResult) {
 	     System.out.println(lenovoSmartTab);
-	     iLenovoSmartTab.saveLenovoSmartTab(lenovoSmartTab);
-	     return "add_success";
+	     if (bindingResult.hasErrors()) {       
+	         
+	         return "addProduct_form";
+	     } else {
+	    	 iLenovoSmartTab.saveLenovoSmartTab(lenovoSmartTab);
+	         return "add_success";
+	     }
+	   
 	 }
 	
 	
 	// select count(title) from tutorials;
-			@PostMapping("/upload")
+			@PostMapping(value = "/upload")
 			public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file) {
 				String message = "";
 				System.out.println("bulk upload");

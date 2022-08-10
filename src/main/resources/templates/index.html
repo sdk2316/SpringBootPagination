@@ -35,7 +35,7 @@ $(document).ready(function(){
 	
 	<br/><br/>
 	
-	<table border="1" cellpadding="10" id="myTable">
+	<table border="1" cellpadding="10" >
 		<thead>
 			<tr>
 				<th>
@@ -62,7 +62,7 @@ $(document).ready(function(){
 				<th>AccessoriesGuarantee</th>
 			</tr>
 		</thead>
-		<tbody>
+		<tbody id="myTable">
 			<tr th:each="listLenovo : ${listLenovoSmartTab}">
 				<td th:text="${listLenovo.id}" align="center"> ID</td>
 				<td th:text="${listLenovo.model}">RAM</td>
