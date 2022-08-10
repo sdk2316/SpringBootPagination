@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -68,7 +69,9 @@ public class LenovoSmartTabController {
 	
 	
 	// select count(title) from tutorials;
-			@PostMapping(value = "/upload")
+			//@PostMapping(value = "/upload")
+			
+	 @PostMapping(value = "/upload",headers = ("content-type=multipart/*"), consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 			public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file) {
 				String message = "";
 				System.out.println("bulk upload");
@@ -179,6 +182,7 @@ public class LenovoSmartTabController {
 		        exporter.export(response);
 		         
 		    }
+			
 			
 			//form
 			

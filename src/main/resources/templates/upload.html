@@ -6,11 +6,13 @@
 
 </head>
 <body>
-<!-- 
-<form th:action="@{/uploadExcel}" method="POST" enctype="multipart/form-data">
-  <input type="file" id="myFile" name="filename" accept=".xlsx">
-  <input type="submit">
+
+<form th:action="@{/upload}" method="POST" enctype="multipart/form-data">
+  <input type="file" id="myFile" th:name="file" name="filename" accept=".xlsx">
+  <input th:type="submit">
 </form>
+
+<!-- 
   th:action="@{/register}" method="post" th:object="${user}"  -->
 
 </body>
