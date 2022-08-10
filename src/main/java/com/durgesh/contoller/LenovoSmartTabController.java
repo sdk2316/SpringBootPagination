@@ -45,11 +45,7 @@ public class LenovoSmartTabController {
 	
 	 @GetMapping("/addProduct")
 	    public String showForm(Model model) {
-		 LenovoSmartTab lenovoSmartTab = new LenovoSmartTab();
-	        model.addAttribute("lenovoSmartTab", lenovoSmartTab);
-	         
-	        List<String> listProfession = Arrays.asList("Developer", "Tester", "Architect");
-	        model.addAttribute("listProfession", listProfession);
+		 
 	         
 	        return "addProduct_form";
 	    }
@@ -184,37 +180,5 @@ public class LenovoSmartTabController {
 		    }
 			
 			
-			//form
 			
-			// @PostMapping annotation maps HTTP POST
-			// requests onto specific handler methods
-			@PostMapping("/uploadExcel")
-			public String uploadMultipartFile(@RequestParam("files") MultipartFile[] files, Model modal) {
-				System.out.println("bulk file.....");
-			try {
-				// Declare empty list for collect the files data
-				// which will come from UI
-				List<LenovoSmartTab> fileList = new ArrayList<LenovoSmartTab>();
-				for (MultipartFile file : files) {
-					
-					
-					// Adding file into fileList
-					fileList.addAll((Collection<? extends LenovoSmartTab>) file);
-					}
-			
-					// Saving all the list item into database
-				iLenovoSmartTab.saveAllLenovoSmartTab(fileList);
-
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			
-				// Send file list to View using modal class
-				// fileServiceImplementation.getAllFiles() used to
-				// fetch all file list from DB
-				modal.addAttribute("allFiles", iLenovoSmartTab.getAllLenovoSmartTab());
-			
-				return "index";
-			}
-
 }

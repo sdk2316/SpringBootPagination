@@ -38,9 +38,11 @@ $(document).ready(function(){
 	<table border="1" cellpadding="10" >
 		<thead>
 			<tr>
-				<th>
-					Product ID
-				</th>
+				
+					<th>
+   			 <a th:href="@{'/page/' + ${currentPage} + '?sortField=id&sortDir=' + ${reverseSortDir}}">Product ID</a>
+</th>
+				
 				<th>
 					<a th:href="@{'/page/' + ${currentPage} + '?sortField=model&sortDir=' + ${reverseSortDir}}">Model</a>
 				</th>
