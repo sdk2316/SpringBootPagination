@@ -43,6 +43,22 @@ public class LenovoSmartTabController {
 	ILenovoSmartTab iLenovoSmartTab;
 	
 	
+	// jquery 
+
+	@GetMapping("/jquerytable")
+	public String viewPage(Model model
+	      ) {
+	     
+	    List<LenovoSmartTab> listLenovoSmartTab = iLenovoSmartTab.jquerylistAll();
+	     
+	   
+	    
+	    model.addAttribute("listLenovoSmartTab", listLenovoSmartTab);
+	     
+	    return "index";
+	}
+	
+	
 	 @GetMapping("/addProduct")
 	    public String showForm(Model model) {
 		 

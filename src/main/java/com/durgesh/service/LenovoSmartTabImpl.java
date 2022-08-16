@@ -73,6 +73,12 @@ public class LenovoSmartTabImpl implements ILenovoSmartTab{
 		lenovoSmartTabRepository.save(lenovoSmartTab);
 		return "record added";
 	}
+
+	@Override
+	public List<LenovoSmartTab> jquerylistAll() {
+		// TODO Auto-generated method stub
+		return lenovoSmartTabRepository.findAll();
+	}
 }
 
 

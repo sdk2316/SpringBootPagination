@@ -20,5 +20,6 @@ public interface ILenovoSmartTab {
 	
 	
 	String saveLenovoSmartTab(LenovoSmartTab lenovoSmartTab);
+	public List<LenovoSmartTab> jquerylistAll();
 
 }
