@@ -35,12 +35,13 @@
 <body>
 <div align="center">
     <h1>Add Product</h1>
-    <form action="#" th:action="@{/addProduct}" method="post" th:object="${lenovoSmartTab}">
+    <form  th:action="@{/addProduct}" method="post" th:object="${lenovoSmartTab}">
        
       <div>
         <label>model:</label>
         <input type="text" th:field="*{model}" /><br/>
         <span th:if="${#fields.hasErrors('model')}" th:errors="*{model}">model error</span>
+    
       </div>
  
         <div>
@@ -121,7 +122,7 @@
         <br/>
         -->
  
-        <button type="submit">AddProduct</button>    
+        <button th:type="submit">AddProduct</button>    
     </form>
 </div>
 </body>

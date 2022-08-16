@@ -46,7 +46,8 @@ public class LenovoSmartTabController {
 	 @GetMapping("/addProduct")
 	    public String showForm(Model model) {
 		 
-	         
+	         LenovoSmartTab t=new LenovoSmartTab();
+	         model.addAttribute("lenovoSmartTab",t);
 	        return "addProduct_form";
 	    }
 	 
@@ -133,6 +134,11 @@ public class LenovoSmartTabController {
 			@GetMapping("/")
 			public String viewHomePage(Model model) {
 			    return viewPage(model, 1, "model", "asc");
+			}
+			
+			@GetMapping("/pravin")
+			public String viewHomePage() {
+				return "index";
 			}
 			
 			

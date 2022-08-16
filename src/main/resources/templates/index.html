@@ -1,120 +1,85 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
-<title>Electronics Product </title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script>
-$(document).ready(function(){
-  $("#myInput").on("keyup", function() {
-    var value = $(this).val().toLowerCase();
-    $("#myTable tr").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-    });
-  });
-});
-</script>
+<title>Electronics Product</title>
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.css" />
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+	integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+	crossorigin="anonymous" />
+
 </head>
 <body>
 
-<div align="center">
+	<div align="center">
 		<div align="center">
-      
-        <a href="/addProduct">Click here to add new record</a>
-    </div>
-	<h1>Product List &nbsp;&nbsp;&nbsp;&nbsp;</h1>
-	<a th:href="@{/lenovoSmartTab/export/pdf}">Export to PDF</a>
-	&nbsp;&nbsp;
-	<a th:href="@{/uploadForm}">Click Here For Add Data in Bulk</a>
-	
-	<h2>Search by Model</h2>
 
-<input id="myInput" type="text" placeholder="Search......">
-<br><br>
-	
-	
-	<br/><br/>
-	
-	<table border="1" cellpadding="10" >
-		<thead>
-			<tr>
-				
-					<th>
-   			 <a th:href="@{'/page/' + ${currentPage} + '?sortField=id&sortDir=' + ${reverseSortDir}}">Product ID</a>
-</th>
-				
-				<th>
-					<a th:href="@{'/page/' + ${currentPage} + '?sortField=model&sortDir=' + ${reverseSortDir}}">Model</a>
-				</th>
-				<th>
-					<a th:href="@{'/page/' + ${currentPage} + '?sortField=ram&sortDir=' + ${reverseSortDir}}">RAM</a>
-				</th>
-				<th>
-					<a th:href="@{'/page/' + ${currentPage} + '?sortField=rom&sortDir=' + ${reverseSortDir}}">ROM</a>
-				</th>
-				<th>SIZE</th>
-				<th>ExpandableUpto</th>
-				<th>
-					<a th:href="@{'/page/' + ${currentPage} + '?sortField=primaryCamera&sortDir=' + ${reverseSortDir}}">PrimaryCamera</a>
-				</th>
-				
-				<th>Battery</th>
-				<th>Processor</th>
-				<th>TabletGuarantee</th>
-				<th>AccessoriesGuarantee</th>
-			</tr>
-		</thead>
-		<tbody id="myTable">
-			<tr th:each="listLenovo : ${listLenovoSmartTab}">
-				<td th:text="${listLenovo.id}" align="center"> ID</td>
-				<td th:text="${listLenovo.model}">RAM</td>
-				<td th:text="${listLenovo.ram}">RAM</td>
-				<td th:text="${listLenovo.rom}">ROM</td>
-				<td th:text="${listLenovo.size}">SIZE</td>
-				<td th:text="${listLenovo.expandableUpto}" align="center">ExpandableUpto</td>
-				
-				<td th:text="${listLenovo.primaryCamera}" align="center">PrimaryCamera</td>
-				<td th:text="${listLenovo.Battery}">Battery</td>
-				<td th:text="${listLenovo.Processor}">Processor</td>
-				<td th:text="${listLenovo.tabletGuarantee}" align="center">TabletGuarantee</td>
-				<td th:text="${listLenovo.accessoryGuarantee}" align="center">AccessoriesGuarantee</td>
-				<!-- <td>
+			<a href="/addProduct">Click here to add new record</a>
+		</div>
+		<h1>Product List &nbsp;&nbsp;&nbsp;&nbsp;</h1>
+		<a th:href="@{/lenovoSmartTab/export/pdf}">Export to PDF</a>
+		&nbsp;&nbsp; <a th:href="@{/uploadForm}">Click Here For Add Data
+			in Bulk</a>
+
+
+
+		<table border="1" cellpadding="10" id="myTable">
+			<thead>
+				<tr>
+
+					<th>ProductID</th>
+
+					<th>Model</th>
+					<th>RAM</th>
+					<th>ROM</th>
+					<th>SIZE</th>
+					<th>Expandable Upto</th>
+					<th>PrimaryCamera</th>
+
+					<th>Battery</th>
+					<th>Processor</th>
+					<th>TabletGuarantee</th>
+					<th>AccessoriesGuarantee</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="listLenovo : ${listLenovoSmartTab}">
+					<td th:text="${listLenovo.id}" align="center">ID</td>
+					<td th:text="${listLenovo.model}">RAM</td>
+					<td th:text="${listLenovo.ram}">RAM</td>
+					<td th:text="${listLenovo.rom}">ROM</td>
+					<td th:text="${listLenovo.size}">SIZE</td>
+					<td th:text="${listLenovo.expandableUpto}" align="center">ExpandableUpto</td>
+
+					<td th:text="${listLenovo.primaryCamera}" align="center">PrimaryCamera</td>
+					<td th:text="${listLenovo.Battery}">Battery</td>
+					<td th:text="${listLenovo.Processor}">Processor</td>
+					<td th:text="${listLenovo.tabletGuarantee}" align="center">TabletGuarantee</td>
+					<td th:text="${listLenovo.accessoryGuarantee}" align="center">AccessoriesGuarantee</td>
+					<!-- <td>
 					<a th:href="@{'/edit/' + ${product.id}}">Edit</a>
 					&nbsp;&nbsp;&nbsp;&nbsp;
 					<a th:href="@{'/delete/' + ${product.id}}">Delete</a>
 				</td> -->
-			</tr>
-		</tbody>
-	</table>
-	<div>&nbsp;</div>
-	<div><i>Sorted by [[${sortField}]] in [[${sortDir}]] order</i></div>
-	<div>&nbsp;</div>
-	<div th:if="${totalPages > 1}">
-		Total Items: [[${totalItems}]]
-		&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;
-		
-		<a th:if="${currentPage > 1}" th:href="@{'/page/1' + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">First</a>
-		<span th:unless="${currentPage > 1}">First</span>
-		&nbsp;&nbsp;
-		
-		<a th:if="${currentPage > 1}" th:href="@{'/page/' + ${currentPage - 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Previous</a>
-		<span th:unless="${currentPage > 1}">Previous</span>
-		
-		&nbsp;&nbsp;
-		
-		<span th:each="i: ${#numbers.sequence(1, totalPages)}">
-			<a th:if="${currentPage != i}" th:href="@{'/page/' + ${i} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
-			<span th:unless="${currentPage != i}">[[${i}]]</span>
-			&nbsp;
-		</span>
-		
-		<a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${currentPage + 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Next</a>
-		<span th:unless="${currentPage < totalPages}">Next</span>
-		&nbsp;&nbsp;
-		
-		<a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${totalPages} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Last</a>
-		<span th:unless="${currentPage < totalPages}">Last</span>
+				</tr>
+			</tbody>
+		</table>
 	</div>
-</div>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script type="text/javascript"
+		src="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			$("#myTable").DataTable({
+				'aoColumnDefs' : [ {
+					'bSortable' : false,
+					'aTargets' : [ -1 ]
+				/* 1st one, start by the right */
+				} ]
+			});
+		})
+	</script>
 </body>
 </html>
