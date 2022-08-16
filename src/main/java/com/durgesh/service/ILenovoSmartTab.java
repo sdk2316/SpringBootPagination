@@ -21,5 +21,7 @@ public interface ILenovoSmartTab {
 	
 	String saveLenovoSmartTab(LenovoSmartTab lenovoSmartTab);
 	public List<LenovoSmartTab> jquerylistAll();
+	
+	List<LenovoSmartTab> getByRam(String ram);
 
 }

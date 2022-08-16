@@ -201,6 +201,14 @@ public class LenovoSmartTabController {
 		         
 		    }
 			
+			//get by ram
+			
+			@GetMapping("/lenovoSmartTab/getByRam/{ram}")
+			public List<LenovoSmartTab> getByRam(@PathVariable String ram) {
+				// TODO Auto-generated method stub
+				return iLenovoSmartTab.getByRam(ram);
+			}
+			
 			
 			
 }
