@@ -3,9 +3,6 @@ package com.durgesh.contoller;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -33,6 +30,7 @@ import com.durgesh.helper.ExcelHelper;
 import com.durgesh.model.LenovoSmartTab;
 import com.durgesh.model.ResponseMessage;
 import com.durgesh.service.ILenovoSmartTab;
+import com.durgesh.utils.LenovoSmartTabExcelExporter;
 import com.durgesh.utils.LenovoSmartTabPdfExporter;
 import com.lowagie.text.DocumentException;
 
@@ -41,6 +39,24 @@ public class LenovoSmartTabController {
 	
 	@Autowired
 	ILenovoSmartTab iLenovoSmartTab;
+	
+	// find all record in excel by ram size
+	@GetMapping("/iLenovoSmartTab/export/excel/{ram}")
+    public void exportToExcel(HttpServletResponse response,@PathVariable String ram) throws IOException {
+        response.setContentType("application/octet-stream");
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        String currentDateTime = dateFormatter.format(new Date());
+         
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=LenovoSmartTab_" + currentDateTime + ".xlsx";
+        response.setHeader(headerKey, headerValue);
+         
+        List<LenovoSmartTab> listOfRam = iLenovoSmartTab.getByRam(ram);
+         
+        LenovoSmartTabExcelExporter excelExporter = new LenovoSmartTabExcelExporter(listOfRam);
+         
+        excelExporter.export(response);    
+    }  
 	
 	
 	// jquery 
