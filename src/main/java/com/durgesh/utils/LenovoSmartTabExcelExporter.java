@@ -43,7 +43,7 @@ public class LenovoSmartTabExcelExporter {
 	        createCell(row, 2, "RAM", style);    
 	        createCell(row, 3, "ROM", style);
 	        createCell(row, 4, "Size", style);
-	        createCell(row, 5, "ExpandableUptoe", style);      
+	        createCell(row, 5, "ExpandableUpto", style);      
 	        createCell(row, 6, "PrimaryCamera", style);       
 	        createCell(row, 7, "Battery", style);    
 	        createCell(row, 8, "Processor", style);
@@ -55,28 +55,48 @@ public class LenovoSmartTabExcelExporter {
 	    private void createCell(Row row, int columnCount, Object value, CellStyle style) {
 	        sheet.autoSizeColumn(columnCount);
 	        Cell cell = row.createCell(columnCount);
+	       //id
 	        if (value instanceof Long) {
 	            cell.setCellValue((Long) value);
-	        } else if (value instanceof String) {
+	        } 
+	        //model
+	        else if (value instanceof String) {
 	            cell.setCellValue((String) value);
-	        } else if (value instanceof String) {
-	            cell.setCellValue((String) value);
-	        } else if (value instanceof String) {
-	            cell.setCellValue((String) value);
-	        } else if (value instanceof Double) {
-	            cell.setCellValue((Double) value);
-	        }else if (value instanceof Integer) {
-	            cell.setCellValue((Integer) value);
-	        }else if (value instanceof String) {
-	            cell.setCellValue((String) value);
-	        } else if (value instanceof String) {
-	            cell.setCellValue((String) value);
-	        } else if (value instanceof String) {
-	            cell.setCellValue((String) value);
-	        } else if (value instanceof String) {
+	        }
+	        //ram
+	        else if (value instanceof String) {
+	            cell.setCellValue((String) value);} 
+	        //rom
+	        else if (value instanceof String) {
 	            cell.setCellValue((String) value);
 	        } 
-	 
+	        //size
+	        else if (value instanceof Double) {
+	            cell.setCellValue((Double) value);
+	        } 
+	        //ep
+	        else if (value instanceof Integer) {
+	            cell.setCellValue((Integer) value);
+	        }
+	        //pc
+	        else if (value instanceof String) {
+	            cell.setCellValue((String) value);
+	        }
+	        //battery
+	        else if (value instanceof String) {
+	            cell.setCellValue((String) value);
+	        } 
+	      	         
+	        //Processor
+	        else if (value instanceof String) {
+	            cell.setCellValue((String) value);
+	        } 
+	        //TabletGuarantee
+	        else if (value instanceof String) {
+	            cell.setCellValue((String) value);
+	        } 
+	       
+	        //AccessoriesGuarantee
 	        else {
 	            cell.setCellValue((String) value);
 	        }
@@ -99,6 +119,7 @@ public class LenovoSmartTabExcelExporter {
 	            createCell(row, columnCount++, listlenovoSmartTab.getModel(), style);
 	            createCell(row, columnCount++, listlenovoSmartTab.getRam(), style);
 	            createCell(row, columnCount++, listlenovoSmartTab.getRom(), style);
+	            createCell(row, columnCount++, listlenovoSmartTab.getSize(), style);
 	            createCell(row, columnCount++, listlenovoSmartTab.getExpandableUpto(), style);
 	            
 	            createCell(row, columnCount++, listlenovoSmartTab.getPrimaryCamera(), style);

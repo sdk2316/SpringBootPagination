@@ -33,6 +33,7 @@ public class LenovoSmartTab {
 	@NotBlank
     @Size(min = 4, max = 1024)
 	private String rom;
+	
 	@NotBlank
     @Size(min = 10, max = 82)
 	private Double size;
@@ -46,12 +47,15 @@ public class LenovoSmartTab {
 	@Min(value = 32)
     @Max(value = 100)
 	private String primaryCamera;
+	
+	
 	@Min(value = 3000)
     @Max(value = 9000)
 	private String battery;
 	
 	@NotBlank(message = "Please enter a processor")
 	private String processor;
+	
 	private String tabletGuarantee;
 	//private String accessoriesGuarantee;
 	

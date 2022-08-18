@@ -41,8 +41,9 @@ public class LenovoSmartTabController {
 	ILenovoSmartTab iLenovoSmartTab;
 	
 	// find all record in excel by ram size
+	//http://localhost:8081/iLenovoSmartTab/export/excel/4GB
 	@GetMapping("/iLenovoSmartTab/export/excel/{ram}")
-    public void exportToExcel(HttpServletResponse response,@PathVariable String ram) throws IOException {
+    public void exportToExcel(HttpServletResponse response,@PathVariable("ram") String ram) throws IOException {
         response.setContentType("application/octet-stream");
         DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
         String currentDateTime = dateFormatter.format(new Date());
@@ -57,6 +58,26 @@ public class LenovoSmartTabController {
          
         excelExporter.export(response);    
     }  
+	
+	
+	// find all record in excel by Name
+	//http://localhost:8081/iLenovoSmartTab/export/excel/ByName/20MP
+		@GetMapping("/iLenovoSmartTab/export/excel/ByName/{name}")
+	    public void exportToExcelByName(HttpServletResponse response,@PathVariable("name") String name) throws IOException {
+	        response.setContentType("application/octet-stream");
+	        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+	        String currentDateTime = dateFormatter.format(new Date());
+	         
+	        String headerKey = "Content-Disposition";
+	        String headerValue = "attachment; filename=LenovoSmartTab_" + currentDateTime + ".xlsx";
+	        response.setHeader(headerKey, headerValue);
+	         
+	        List<LenovoSmartTab> listOfRam = iLenovoSmartTab.getByName(name);
+	         
+	        LenovoSmartTabExcelExporter excelExporter = new LenovoSmartTabExcelExporter(listOfRam);
+	         
+	        excelExporter.export(response);    
+	    }  
 	
 	
 	// jquery 

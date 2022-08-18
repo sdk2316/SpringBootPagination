@@ -85,6 +85,12 @@ public class LenovoSmartTabImpl implements ILenovoSmartTab{
 		// TODO Auto-generated method stub
 		return lenovoSmartTabRepository.findByRam(ram);
 	}
+
+	@Override
+	public List<LenovoSmartTab> getByName(String name) {
+		// TODO Auto-generated method stub
+		return lenovoSmartTabRepository.findByName(name);
+	}
 }
 
 
