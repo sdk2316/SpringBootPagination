@@ -40,6 +40,9 @@ public class LenovoSmartTabController {
 	@Autowired
 	ILenovoSmartTab iLenovoSmartTab;
 	
+	
+	
+	
 	// find all record in excel by ram size
 	//http://localhost:8081/iLenovoSmartTab/export/excel/4GB
 	@GetMapping("/iLenovoSmartTab/export/excel/{ram}")
@@ -56,14 +59,24 @@ public class LenovoSmartTabController {
          
         LenovoSmartTabExcelExporter excelExporter = new LenovoSmartTabExcelExporter(listOfRam);
          
-        excelExporter.export(response);    
+        excelExporter.export(response);  
+        
+       
     }  
 	
 	
+	@GetMapping("/filterByNameInExcel")
+	public String filterExcelForm() {
+	     
+	   
+	     
+	    return "filterByNameInExcel";
+	}
+	
 	// find all record in excel by Name
 	//http://localhost:8081/iLenovoSmartTab/export/excel/ByName/20MP
-		@GetMapping("/iLenovoSmartTab/export/excel/ByName/{name}")
-	    public void exportToExcelByName(HttpServletResponse response,@PathVariable("name") String name) throws IOException {
+		@GetMapping("/iLenovoSmartTab/export/excel/ByName")
+	    public String exportToExcelByName(HttpServletResponse response,@RequestParam(value="keyword") String keyword) throws IOException {
 	        response.setContentType("application/octet-stream");
 	        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
 	        String currentDateTime = dateFormatter.format(new Date());
@@ -72,11 +85,13 @@ public class LenovoSmartTabController {
 	        String headerValue = "attachment; filename=LenovoSmartTab_" + currentDateTime + ".xlsx";
 	        response.setHeader(headerKey, headerValue);
 	         
-	        List<LenovoSmartTab> listOfRam = iLenovoSmartTab.getByName(name);
+	        List<LenovoSmartTab> listOfRam = iLenovoSmartTab.getByName(keyword);
 	         
 	        LenovoSmartTabExcelExporter excelExporter = new LenovoSmartTabExcelExporter(listOfRam);
 	         
-	        excelExporter.export(response);    
+	        excelExporter.export(response);   
+	        
+	        return "filterByNameInExcel";
 	    }  
 	
 	

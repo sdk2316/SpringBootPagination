@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Electronics Product </title>
+
+</head>
+<body>
+
+<form th:action="@{/iLenovoSmartTab/export/excel/ByName}" method="Get" >
+  <input type="text" name="keyword" th:value="${keyword}">
+  <input th:type="submit">
+</form>
+
+</body>
+</html>
