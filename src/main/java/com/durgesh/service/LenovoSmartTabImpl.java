@@ -91,6 +91,12 @@ public class LenovoSmartTabImpl implements ILenovoSmartTab{
 		// TODO Auto-generated method stub
 		return lenovoSmartTabRepository.findByName(name);
 	}
+
+	@Override
+	public List<LenovoSmartTab> getByKeyword(String keyword) {
+		// TODO Auto-generated method stub
+		return lenovoSmartTabRepository.findByKeyword(keyword);
+	}
 }
 
 

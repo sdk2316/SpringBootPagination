@@ -30,6 +30,9 @@ public interface ILenovoSmartTab {
 	List<LenovoSmartTab> getByName(String name);
 	
 	
+	public List<LenovoSmartTab> getByKeyword(String keyword);
+		 
+	
 	
 }
 

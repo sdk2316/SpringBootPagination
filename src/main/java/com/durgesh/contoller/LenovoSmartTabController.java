@@ -262,5 +262,17 @@ public class LenovoSmartTabController {
 			}
 			
 			
+			@GetMapping("/search")
+			 public String home(LenovoSmartTab lenovoSmartTab, Model model, String keyword) {
+			  if(keyword!=null) {
+				  List<LenovoSmartTab> list = iLenovoSmartTab.getByKeyword(keyword);
+			   model.addAttribute("list", list);
+			  }else {
+				  List<LenovoSmartTab> list = iLenovoSmartTab.getAllLenovoSmartTab();
+			  model.addAttribute("list", list);}
+			  return "filterByNameInExcel";
+			 }
+			
+			
 			
 }
